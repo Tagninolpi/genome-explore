@@ -1,0 +1,55 @@
+container diagram :
+
+@startuml
+!include <C4/C4_Container>
+
+LAYOUT_WITH_LEGEND()
+title Container diagram - GenomeXplore (local deployment)
+
+Person(user, "Researcher", "Searches a species and selects genomes for downstream analysis")
+
+System_Boundary(gx, "GenomeXplore (runs locally)") {
+    Container(front, "Frontend", "JavaScript (to confirm)", "Tables and charts, manual selection/exclusion, raw data requests, export of links, import of custom statistics")
+    Container(api, "Backend API", "Python, FastAPI", "Queries the 3 databases, combines results, applies simple pre-filters, computes statistics, returns raw annotation links")
+}
+
+System_Ext(ncbi, "NCBI", "Genome database")
+System_Ext(ensembl, "Ensembl", "Genome database")
+System_Ext(gwh, "GWH", "Genome Warehouse")
+
+Rel(user, front, "Enters a search (scientific name, genome ID, ...), explores and selects genomes")
+Rel(user, front, "Imports custom statistics per genome from own analyses")
+Rel(front, user, "Exports raw annotation links of selected genomes")
+Rel(front, api, "Sends search and raw-data requests, receives results and statistics", "JSON/HTTPS")
+Rel(api, ncbi, "Queries genome data", "REST GET/HTTPS")
+Rel(api, ensembl, "Queries genome data", "REST GET/HTTPS")
+Rel(api, gwh, "Queries genome data", "REST GET/HTTPS")
+@enduml
+
+backend_API :
+
+@startuml
+!include <C4/C4_Component>
+
+LAYOUT_WITH_LEGEND()
+title Component diagram - Backend API
+
+Container(front, "Frontend", "JavaScript (to confirm)", "Tables, charts, selection, export and import")
+
+Container_Boundary(api, "Backend API (FastAPI)") {
+    Component(router, "API endpoints", "FastAPI routes", "Receive requests from the frontend and return results as JSON")
+    Component(src, "Database queries", "Python", "One specific query per database")
+    Component(agg, "Aggregation and pre-filters", "Python", "Combines the 3 responses, applies simple pre-filters")
+    Component(stats, "Statistics", "Python", "Computes data for charts (e.g. PCA, BUSCO q/p values)")
+    Component(raw, "Raw data links", "Python", "Extracts raw annotation links from the database responses")
+}
+
+System_Ext(db, "NCBI, Ensembl, GWH", "External genome databases")
+
+Rel_D(front, router, "Sends search and raw-data requests", "JSON/HTTPS")
+Rel_D(router, src, "Forwards search")
+Rel_R(router, raw, "Forwards raw-data request")
+Rel_L(src, db, "Queries", "REST GET/HTTPS")
+Rel_D(src, agg, "Sends the 3 responses")
+Rel_D(agg, stats, "Sends combined results")
+@enduml

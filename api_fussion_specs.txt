@@ -1,0 +1,24 @@
+Ensembl_Web:
+
+input :
+common name, scientific name, taxonomy id, assembly accession / genome tag, and genome id (UUID).
+output:
+genome_id, genome_tag, species_taxonomy_id, taxonomy_id, common_name, scientific_name, type(?),
+assembly: accession_id, name, url
+is_reference, coding_genes_count, contig_n50, has_variation, has_regulation, annotation_provider, organism_id,
+annotation_method, rank,
+release: name, type
+ftp_url
+
+Ensembl_graph:
+input:
+idem (a verif)
+output:
+genome: genome_id, assembly_accession, scientific_name, taxon_id, genome_tag, is_reference
+
+NCBI:
+look at source sheet NCBI
+
+GWH:
+go to https://ngdc.cncb.ac.cn/gwh/search/advanced/ do a manual search, then open inspector, go to network and filter by XHR:
+copy the api?term.... link use it to search for any other input with the same search parameters.
