@@ -17,8 +17,45 @@ output:
 genome: genome_id, assembly_accession, scientific_name, taxon_id, genome_tag, is_reference
 
 NCBI:
+everything : 
+https://api.ncbi.nlm.nih.gov/datasets/v2/genome/taxon/chordata/dataset_report
+
+stat assemblage : 
+https://api.ncbi.nlm.nih.gov/datasets/v2/genome/accession/GCF_903992535.2/dataset_report
+
 look at source sheet NCBI
 
 GWH:
 go to https://ngdc.cncb.ac.cn/gwh/search/advanced/ do a manual search, then open inspector, go to network and filter by XHR:
 copy the api?term.... link use it to search for any other input with the same search parameters.
+
+
+https://ngdc.cncb.ac.cn/gwh/search/advanced/result?search_category=17&search_term=1777&query_box=&source=1
+
+
+
+questions: 
+input: 
+
+
+
+sur ncbi comment on trouve : % de gènes avec UTR annotés
+
+pour : 
+z-score, MAD (robuste, tailles en log) ; optionnellement multivarié (Mahalanobis, Isolation
+Forest) pour des combinaisons de métriques (ex. grand assemblage, peu de gènes).
+
+on le fait avec quelles infos?
+
+
+à faire:
+
+faire une api qui request les 3 bd (si arbre taxo que ncbi et gwh) regarder duplicats et infos obtenue
+(cree une sortie avec les infos importantes)
+
+filtrage detection outliers... (à faire plus tard) 
+
+exporter json url toutes les données bruts
+importer json nouvelles stats par assemblage
+
+
