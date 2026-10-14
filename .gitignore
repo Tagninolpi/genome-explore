@@ -1,0 +1,8 @@
+# Virtual environments
+.venv/
+
+# Python cache / build
+__pycache__/
+
+# Downloaded data
+gwh_chordata.json

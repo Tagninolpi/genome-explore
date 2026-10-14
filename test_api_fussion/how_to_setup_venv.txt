@@ -1,0 +1,8 @@
+in directory "genomexplore/test_api_fussion" do: 
+'''
+python3 -m venv .venv # creat venv
+source .venv/bin/activate # activate it
+pip install requests # install dependencies
+'''
+
+and thats it, you should be able to run any of the existing python scripts whitout errors.
