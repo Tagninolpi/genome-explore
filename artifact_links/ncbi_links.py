@@ -80,9 +80,11 @@ def list_files(folder_url):
     return re.findall(r'href="([^"/?]+)"', page)
 
 
-def ncbi_links(accession):
+def ncbi_links(accession, assembly_name=None):
     """Return the full accession and {label: link} for one NCBI assembly.
 
+    assembly_name is optional: when it is already known (e.g. from the search
+    results), NCBI's API is not asked again. The accession must then have its version.
     A link is None when the file does not exist.
 
     Raises LinkError with a readable message when the links cannot be collected.
@@ -90,7 +92,12 @@ def ncbi_links(accession):
     if not ACCESSION_FORMAT.fullmatch(accession):
         raise LinkError(f"{accession!r} is not an NCBI accession (expected e.g. GCF_018350175.1)")
 
-    accession, assembly_name = get_assembly_info(accession)
+    if assembly_name is None:
+        accession, assembly_name = get_assembly_info(accession)
+    elif "." not in accession:
+        raise LinkError(f"{accession} needs its version number (e.g. .1) when the assembly name is given")
+    else:
+        assembly_name = assembly_name.replace(" ", "_")
     folder_url = build_folder_url(accession, assembly_name)
     files = list_files(folder_url)
 
