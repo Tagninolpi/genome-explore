@@ -1,0 +1,62 @@
+Decisions taken during the constraction of artifact_links/ : 
+
+Goal: for each genome, give the links to its files (genome sequence,
+annotation, proteins...) so researchers can download them later.
+
+
+
+General choices (all three databases) : 
+
+
+- We never download the genome files, only their links.
+
+- For each genome, we open its folder page and read the list of files
+  that are really inside.
+  Why: not every genome has every file for example, many genomes have no
+  annotation. If we guessed the links, we could give links to files that
+  don't exist. The folder page is just a short list of names, so reading it
+  is not downloading anything big.
+
+- When a file doesn't exist, we write None (null in JSON). We never invent
+  a link.
+
+- Every database uses the same 11 labels: genome_fasta, gff, gtf, cds,
+  rna, protein, feature_table, assembly_report, assembly_stats,
+  annotation_report, md5.
+  Why: each database names its files differently (the annotation is
+  "..._genomic.gff.gz" at NCBI, "....gff.gz" at GWH, "genes.gff3.gz" at
+  Ensembl).
+
+- I added a feature_table label.
+  Why: NCBI and GWH both have this file (a table listing every gene and its
+  position), and it is small compared to the genome.
+
+- We always keep the full accession, with its version number (.1, .2...).
+  Why: different versions of a genome are different assemblies, with
+  different files. The links must match the exact version.
+
+- If someone gives an accession without a version, we let the database
+  tell us the full one, and we give it back with the links.
+  Why: NCBI and Ensembl then choose the latest version. The person must
+  know which version they got (for example GCF_000002285 became
+  GCF_000002285.5 for the dog).
+
+- For GWH, we never add ".1" to an accession that has no version.
+  Why: old GWH accessions really have no version number. Adding one would
+  make a wrong accession.
+
+- When something goes wrong, the scripts give a clear message in plain
+  words (LinkError), instead of a Python error.
+  Why: "GCF_999999999.1 was not found on NCBI" is understandable, but
+  "KeyError: 'reports'" means nothing to a user. 
+
+
+
+Organisation : 
+
+- I work on the branch feature/artifact-links.
+
+- The scripts are in artifact_links/
+
+- The test notebooks in test_artifact_links/ are pushed, with their
+  results visible.
