@@ -32,9 +32,9 @@ NCBI_ENDINGS = {
 
 
 def get_assembly_info(accession):
-    """Ask NCBI for the full accession (with version) and the assembly name.
+    """Ask NCBI for the full accession (with version), the assembly name and the species.
 
-    The name is written as it appears in folder names.
+    The assembly name is written as it appears in folder names.
     """
     url = DATASETS_URL.format(accession=accession)
     reports = fetch(url, "assembly report", "NCBI").json().get("reports")
@@ -44,7 +44,8 @@ def get_assembly_info(accession):
     report = next((r for r in reports if r["assembly_info"].get("assembly_status") == "current"), reports[0])
     full_accession = report["accession"]  # always has a version, even if we asked without one
     assembly_name = report["assembly_info"]["assembly_name"].replace(" ", "_")
-    return full_accession, assembly_name
+    species = report["organism"]["organism_name"]
+    return full_accession, assembly_name, species
 
 
 def build_folder_url(accession, assembly_name):
@@ -56,11 +57,12 @@ def build_folder_url(accession, assembly_name):
     )
 
 
-def ncbi_links(accession, assembly_name=None):
-    """Return the full accession and {label: link} for one NCBI assembly.
+def ncbi_links(accession, assembly_name=None, species=None):
+    """Return the full accession, the species and {label: link} for one NCBI assembly.
 
     assembly_name is optional: when it is already known (e.g. from the search
-    results), NCBI's API is not asked again. The accession must then have its version.
+    results), NCBI's API is not asked again. The accession must then have its version,
+    and the species is the one given (or None).
     A link is None when the file does not exist.
 
     Raises LinkError with a readable message when the links cannot be collected.
@@ -69,7 +71,7 @@ def ncbi_links(accession, assembly_name=None):
         raise LinkError(f"{accession!r} is not an NCBI accession (expected e.g. GCF_018350175.1)")
 
     if assembly_name is None:
-        accession, assembly_name = get_assembly_info(accession)
+        accession, assembly_name, species = get_assembly_info(accession)
     elif "." not in accession:
         raise LinkError(f"{accession} needs its version number (e.g. .1) when the assembly name is given")
     else:
@@ -85,4 +87,4 @@ def ncbi_links(accession, assembly_name=None):
                  or (label == "annotation_report" and f.endswith(ending))  # starts with the species name
                  or f == ending]                                           # md5checksums.txt
         links[label] = folder_url + found[0] if found else None
-    return {"accession": accession, "links": links}
+    return {"accession": accession, "species": species, "links": links}

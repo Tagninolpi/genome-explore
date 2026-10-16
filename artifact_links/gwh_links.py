@@ -45,7 +45,7 @@ def remove_html(text):
 
 
 def get_folder_info(accession):
-    """Ask GWH's search for the full accession (with version, if it has one) and the folder link."""
+    """Ask GWH's search for the full accession (with version, if it has one), the folder link and the species."""
     params = {**SEARCH_PARAMS, "term": accession}
     records = fetch(SEARCH_URL, "assembly information", "GWH", params=params).json().get("data") or []
 
@@ -53,15 +53,17 @@ def get_folder_info(accession):
     for record in records:
         found = remove_html(record["attrs"].get("accession", ""))
         if found == accession or found.startswith(accession + "."):
-            return found, DOWNLOAD_URL + record["attrs"]["ftp_directory"] + "/"
+            folder_url = DOWNLOAD_URL + record["attrs"]["ftp_directory"] + "/"
+            return found, folder_url, record["attrs"].get("scientific_name")
     raise LinkError(f"{accession} was not found on GWH")
 
 
-def gwh_links(accession, folder_url=None):
-    """Return the full accession and {label: link} for one GWH assembly.
+def gwh_links(accession, folder_url=None, species=None):
+    """Return the full accession, the species and {label: link} for one GWH assembly.
 
     folder_url is optional: when it is already known (e.g. from the search
-    results), GWH is not asked again. A link is None when the file does not exist.
+    results), GWH is not asked again, and the species is the one given (or None).
+    A link is None when the file does not exist.
 
     Raises LinkError with a readable message when the links cannot be collected.
     """
@@ -69,11 +71,11 @@ def gwh_links(accession, folder_url=None):
         raise LinkError(f"{accession!r} is not a GWH accession (expected e.g. GWHBHRQ00000000)")
 
     if folder_url is None:
-        accession, folder_url = get_folder_info(accession)
+        accession, folder_url, species = get_folder_info(accession)
     files = list_files(folder_url, "GWH")
 
     links = {label: None for label in LABELS}
     for label, ending in GWH_ENDINGS.items():
         if accession + ending in files:  # GWH file names are always the accession + the ending
             links[label] = folder_url + accession + ending
-    return {"accession": accession, "links": links}
+    return {"accession": accession, "species": species, "links": links}

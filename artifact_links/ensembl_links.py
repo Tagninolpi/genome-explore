@@ -25,7 +25,7 @@ ENSEMBL_FILES = {
 
 
 def get_folder_info(accession):
-    """Ask Ensembl's search for the full accession (with version) and the folder link.
+    """Ask Ensembl's search for the full accession (with version), the folder link and the species.
 
     An assembly can have several annotations in Ensembl (e.g. one by Ensembl and one
     by another team), each in its own folder: Ensembl's own annotation is preferred.
@@ -42,15 +42,15 @@ def get_folder_info(accession):
 
     chosen = next((m for m in matches if m.get("annotation_provider") == "Ensembl"), matches[0])
     folder_url = chosen["ftp_url"].rstrip("/") + "/"
-    return chosen["assembly"]["accession_id"], folder_url
+    return chosen["assembly"]["accession_id"], folder_url, chosen["scientific_name"]
 
 
-def ensembl_links(accession, folder_url=None):
-    """Return the full accession and {label: link} for one Ensembl assembly.
+def ensembl_links(accession, folder_url=None, species=None):
+    """Return the full accession, the species and {label: link} for one Ensembl assembly.
 
     folder_url is optional: when it is already known (e.g. the ftp_url from the
-    search results), Ensembl's search is not asked again. A link is None when the
-    file does not exist.
+    search results), Ensembl's search is not asked again, and the species is the one
+    given (or None). A link is None when the file does not exist.
 
     Raises LinkError with a readable message when the links cannot be collected.
     """
@@ -58,7 +58,7 @@ def ensembl_links(accession, folder_url=None):
         raise LinkError(f"{accession!r} is not an accession used by Ensembl (expected e.g. GCA_018350175.1)")
 
     if folder_url is None:
-        accession, folder_url = get_folder_info(accession)
+        accession, folder_url, species = get_folder_info(accession)
 
     # which sub-folders exist (genome/, geneset/...), then which files are in each
     page = fetch(folder_url, "list of sub-folders", "Ensembl").text
@@ -72,4 +72,4 @@ def ensembl_links(accession, folder_url=None):
     for label, path in ENSEMBL_FILES.items():
         if path in files:
             links[label] = folder_url + path
-    return {"accession": accession, "links": links}
+    return {"accession": accession, "species": species, "links": links}
