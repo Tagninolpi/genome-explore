@@ -1,0 +1,167 @@
+global_name,use,NCBI_name,GWH_name,NCBI_mapping,GWH_mapping,notes,NCBI example,GWH example
+accession,o,accession,id,"[""accession""]","[""id""]",GWH id is clean; attrs.accession is an HTML link,GCA_052040795.2,GCA_000001405.14
+tax_id,o,organism.tax_id,attrs.taxonomy_id,"[""organism"", ""tax_id""]","[""attrs"", ""taxonomy_id""]","int in NCBI, string in GWH",7955,9606
+scientific_name,o,organism.organism_name,attrs.scientific_name,"[""organism"", ""organism_name""]","[""attrs"", ""scientific_name""]",,Danio rerio,Homo sapiens
+common_name,o,organism.common_name,attrs.genbank_common_name,"[""organism"", ""common_name""]","[""attrs"", ""genbank_common_name""]",attrs.common_names is a separate GWH field,zebrafish,human
+assembly_level,x,assembly_info.assembly_level,attrs.assembly_level,"[""assembly_info"", ""assembly_level""]","[""attrs"", ""assembly_level""]",different vocabularies,Complete Genome,Draft genome in chromosome level
+assembly_name,o,assembly_info.assembly_name,title,"[""assembly_info"", ""assembly_name""]","[""title""]",,GRCz13ab,GRCh37.p13
+description,x,assembly_info.description,description,"[""assembly_info"", ""description""]","[""description""]",,Genome Reference Consortium Human Build 38 patch release 14 (GRCh38.p14),Genome Reference Consortium Human Build 37 patch release 13 (GRCh37.p13)
+bioproject_accession,x,assembly_info.bioproject_accession,attrs.bioproject,"[""assembly_info"", ""bioproject_accession""]","[""attrs"", ""bioproject""]",GWH is an HTML link,PRJNA1299309,<a href='https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA31257'>PRJNA31257</a>
+biosample_accession,x,assembly_info.biosample.accession,attrs.biosample,"[""assembly_info"", ""biosample"", ""accession""]","[""attrs"", ""biosample""]",GWH often '-',SAMN50304324,-
+submitter,o,assembly_info.submitter,attrs.submitter_organization,"[""assembly_info"", ""submitter""]","[""attrs"", ""submitter_organization""]",,National Human Genome Research Institute,Genome Reference Consortium
+assembly_method,o,assembly_info.assembly_method,attrs.assembly_methods,"[""assembly_info"", ""assembly_method""]","[""attrs"", ""assembly_methods""]",,Verkko v. 2.2.1,-
+sequencing_tech,o,assembly_info.sequencing_tech,attrs.technology_and_coverage,"[""assembly_info"", ""sequencing_tech""]","[""attrs"", ""technology_and_coverage""]",GWH probably merges technology + coverage,Oxford Nanopore PromethION; PacBio,- -
+synonym,x,assembly_info.synonym,attrs.ucsc_name,"[""assembly_info"", ""synonym""]","[""attrs"", ""ucsc_name""]",guess from examples (hg38 / hg19),hg38,hg19
+chromosome_count,o,assembly_stats.total_number_of_chromosomes,attrs.chromosome_number,"[""assembly_stats"", ""total_number_of_chromosomes""]","[""attrs"", ""chromosome_number""]",,25,24
+genome_size,o,assembly_stats.total_sequence_length,attrs.genome_size,"[""assembly_stats"", ""total_sequence_length""]","[""attrs"", ""genome_size""]","string in NCBI, int in GWH",1455310570,3234834689
+gc_percent,o,assembly_stats.gc_percent,attrs.gc_content,"[""assembly_stats"", ""gc_percent""]","[""attrs"", ""gc_content""]",,37,41
+gene_count,o,annotation_info.stats.gene_counts.total,attrs.gene_number,"[""annotation_info"", ""stats"", ""gene_counts"", ""total""]","[""attrs"", ""gene_number""]",GWH value looks unreliable (37 for human),54900,37
+refseq_accession,o,paired_accession,attrs.refseq_accession,"[""paired_accession""]","[""attrs"", ""refseq_accession""]",,GCF_052040795.2,GCF_000001405.25
+geo_loc_name,x,assembly_info.biosample.geo_loc_name,attrs.country,"[""assembly_info"", ""biosample"", ""geo_loc_name""]","[""attrs"", ""country""]",unconfirmed: GWH example is '-',Japan,-
+contacts,x,assembly_info.biosample.owner.contacts[].lab,attrs.contacts,"[""assembly_info"", ""biosample"", ""owner"", ""contacts"", ""[]"", ""lab""]","[""attrs"", ""contacts""]",unconfirmed: GWH example is '-'; list on NCBI side,European Nucleotide Archive,-
+current_accession,x,current_accession,,"[""current_accession""]",,,GCA_052040795.2,
+source_database,o,source_database,,"[""source_database""]",,,SOURCE_DATABASE_GENBANK,
+organism_infraspecific_names_ecotype,x,organism.infraspecific_names.ecotype,,"[""organism"", ""infraspecific_names"", ""ecotype""]",,,USA,
+organism_infraspecific_names_strain,x,organism.infraspecific_names.strain,,"[""organism"", ""infraspecific_names"", ""strain""]",,,M-AB,
+assembly_status,x,assembly_info.assembly_status,,"[""assembly_info"", ""assembly_status""]",,,current,
+paired_assembly_accession,x,assembly_info.paired_assembly.accession,,"[""assembly_info"", ""paired_assembly"", ""accession""]",,,GCF_052040795.2,
+paired_assembly_status,x,assembly_info.paired_assembly.status,,"[""assembly_info"", ""paired_assembly"", ""status""]",,,current,
+paired_assembly_annotation_name,x,assembly_info.paired_assembly.annotation_name,,"[""assembly_info"", ""paired_assembly"", ""annotation_name""]",,,GCF_052040795.2-RS_2026_08,
+paired_assembly_only_refseq,x,assembly_info.paired_assembly.only_refseq,,"[""assembly_info"", ""paired_assembly"", ""only_refseq""]",,,chromosome MT,
+paired_assembly_refseq_genbank_are_different,x,assembly_info.paired_assembly.refseq_genbank_are_different,,"[""assembly_info"", ""paired_assembly"", ""refseq_genbank_are_different""]",,,True,
+paired_assembly_differences,x,assembly_info.paired_assembly.differences,,"[""assembly_info"", ""paired_assembly"", ""differences""]",,,Added chromosome MT,
+assembly_type,o,assembly_info.assembly_type,,"[""assembly_info"", ""assembly_type""]",,,haploid,
+bioproject_lineage_bioprojects_accession,x,assembly_info.bioproject_lineage[].bioprojects[].accession,,"[""assembly_info"", ""bioproject_lineage"", ""[]"", ""bioprojects"", ""[]"", ""accession""]",,,PRJNA1299309,
+bioproject_lineage_bioprojects_title,x,assembly_info.bioproject_lineage[].bioprojects[].title,,"[""assembly_info"", ""bioproject_lineage"", ""[]"", ""bioprojects"", ""[]"", ""title""]",,,A complete genome assembly for the zebrafish Mishima-AB (M-AB) strain,
+release_date,o,assembly_info.release_date,,"[""assembly_info"", ""release_date""]",,,2026-08-28,
+refseq_category,o,assembly_info.refseq_category,,"[""assembly_info"", ""refseq_category""]",,,reference genome,
+biosample_last_updated,x,assembly_info.biosample.last_updated,,"[""assembly_info"", ""biosample"", ""last_updated""]",,,2025-07-31T16:23:03.997,
+biosample_publication_date,x,assembly_info.biosample.publication_date,,"[""assembly_info"", ""biosample"", ""publication_date""]",,,2025-07-31T00:00:00.000,
+biosample_submission_date,x,assembly_info.biosample.submission_date,,"[""assembly_info"", ""biosample"", ""submission_date""]",,,2025-07-31T16:23:03.997,
+biosample_sample_ids_label,x,assembly_info.biosample.sample_ids[].label,,"[""assembly_info"", ""biosample"", ""sample_ids"", ""[]"", ""label""]",,,Sample name,
+biosample_sample_ids_value,x,assembly_info.biosample.sample_ids[].value,,"[""assembly_info"", ""biosample"", ""sample_ids"", ""[]"", ""value""]",,,GRCz12ab,
+biosample_description_title,x,assembly_info.biosample.description.title,,"[""assembly_info"", ""biosample"", ""description"", ""title""]",,,Model organism or animal sample from Danio rerio,
+biosample_description_organism_tax_id,x,assembly_info.biosample.description.organism.tax_id,,"[""assembly_info"", ""biosample"", ""description"", ""organism"", ""tax_id""]",,,7955,
+biosample_description_organism_organism_name,x,assembly_info.biosample.description.organism.organism_name,,"[""assembly_info"", ""biosample"", ""description"", ""organism"", ""organism_name""]",,,Danio rerio,
+biosample_owner_name,x,assembly_info.biosample.owner.name,,"[""assembly_info"", ""biosample"", ""owner"", ""name""]",,,National Human Genome Research Institute,
+biosample_models,x,assembly_info.biosample.models[],,"[""assembly_info"", ""biosample"", ""models"", ""[]""]",,,Model organism or animal,
+biosample_bioprojects_accession,x,assembly_info.biosample.bioprojects[].accession,,"[""assembly_info"", ""biosample"", ""bioprojects"", ""[]"", ""accession""]",,,PRJNA1299309,
+biosample_package,x,assembly_info.biosample.package,,"[""assembly_info"", ""biosample"", ""package""]",,,Model.organism.animal.1.0,
+biosample_attributes_name,x,assembly_info.biosample.attributes[].name,,"[""assembly_info"", ""biosample"", ""attributes"", ""[]"", ""name""]",,,strain,
+biosample_attributes_value,x,assembly_info.biosample.attributes[].value,,"[""assembly_info"", ""biosample"", ""attributes"", ""[]"", ""value""]",,,M-AB,
+biosample_status_status,x,assembly_info.biosample.status.status,,"[""assembly_info"", ""biosample"", ""status"", ""status""]",,,live,
+biosample_status_when,x,assembly_info.biosample.status.when,,"[""assembly_info"", ""biosample"", ""status"", ""when""]",,,2025-07-31T16:23:03.997,
+biosample_collection_date,x,assembly_info.biosample.collection_date,,"[""assembly_info"", ""biosample"", ""collection_date""]",,,2024-06,
+biosample_dev_stage,x,assembly_info.biosample.dev_stage,,"[""assembly_info"", ""biosample"", ""dev_stage""]",,,Cell culture,
+biosample_ecotype,x,assembly_info.biosample.ecotype,,"[""assembly_info"", ""biosample"", ""ecotype""]",,,USA,
+biosample_sex,x,assembly_info.biosample.sex,,"[""assembly_info"", ""biosample"", ""sex""]",,,not applicable,
+biosample_strain,x,assembly_info.biosample.strain,,"[""assembly_info"", ""biosample"", ""strain""]",,,M-AB,
+biosample_tissue,x,assembly_info.biosample.tissue,,"[""assembly_info"", ""biosample"", ""tissue""]",,,Cell culture,
+blast_url,x,assembly_info.blast_url,,"[""assembly_info"", ""blast_url""]",,,https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROG_DEF=blastn&BLAST_SPEC=GDH_GCA_052040795.2,
+comments,x,assembly_info.comments,,"[""assembly_info"", ""comments""]",,,An error in the original submission of this assembly resulted in the inclusion of chr4 and chr19 from the GRCz12tu (GCA_049306965.1) Tuebingen strain instead of the intended sequences from the AB strain. This has been corrected in the GRCz13ab assembly.,
+total_ungapped_length,o,assembly_stats.total_ungapped_length,,"[""assembly_stats"", ""total_ungapped_length""]",,,1455310570,
+number_of_contigs,o,assembly_stats.number_of_contigs,,"[""assembly_stats"", ""number_of_contigs""]",,,25,
+contig_n50,o,assembly_stats.contig_n50,,"[""assembly_stats"", ""contig_n50""]",,,59431669,
+contig_l50,o,assembly_stats.contig_l50,,"[""assembly_stats"", ""contig_l50""]",,,11,
+number_of_scaffolds,o,assembly_stats.number_of_scaffolds,,"[""assembly_stats"", ""number_of_scaffolds""]",,,25,
+scaffold_n50,o,assembly_stats.scaffold_n50,,"[""assembly_stats"", ""scaffold_n50""]",,,59431669,
+scaffold_l50,o,assembly_stats.scaffold_l50,,"[""assembly_stats"", ""scaffold_l50""]",,,11,
+number_of_component_sequences,o,assembly_stats.number_of_component_sequences,,"[""assembly_stats"", ""number_of_component_sequences""]",,,25,
+atgc_count,o,assembly_stats.atgc_count,,"[""assembly_stats"", ""atgc_count""]",,,1455310570,
+gc_count,o,assembly_stats.gc_count,,"[""assembly_stats"", ""gc_count""]",,,540851068,
+genome_coverage,o,assembly_stats.genome_coverage,,"[""assembly_stats"", ""genome_coverage""]",,,200,
+wgs_info_wgs_project_accession,x,wgs_info.wgs_project_accession,,"[""wgs_info"", ""wgs_project_accession""]",,,JBQAYU02,
+wgs_info_master_wgs_url,x,wgs_info.master_wgs_url,,"[""wgs_info"", ""master_wgs_url""]",,,https://www.ncbi.nlm.nih.gov/nuccore/JBQAYU000000000.2,
+wgs_info_wgs_contigs_url,x,wgs_info.wgs_contigs_url,,"[""wgs_info"", ""wgs_contigs_url""]",,,https://www.ncbi.nlm.nih.gov/Traces/wgs/JBQAYU02,
+number_of_organelles,x,assembly_stats.number_of_organelles,,"[""assembly_stats"", ""number_of_organelles""]",,,1,
+organelle_info_description,x,organelle_info[].description,,"[""organelle_info"", ""[]"", ""description""]",,,Mitochondrion,
+organelle_info_total_seq_length,x,organelle_info[].total_seq_length,,"[""organelle_info"", ""[]"", ""total_seq_length""]",,,16596,
+organelle_info_submitter,x,organelle_info[].submitter,,"[""organelle_info"", ""[]"", ""submitter""]",,,Genome Reference Consortium,
+additional_submitters_genbank_accession,x,additional_submitters[].genbank_accession,,"[""additional_submitters"", ""[]"", ""genbank_accession""]",,,AC024175.3,
+additional_submitters_refseq_accession,x,additional_submitters[].refseq_accession,,"[""additional_submitters"", ""[]"", ""refseq_accession""]",,,NC_002333.2,
+additional_submitters_chr_name,x,additional_submitters[].chr_name,,"[""additional_submitters"", ""[]"", ""chr_name""]",,,MT,
+additional_submitters_molecule_type,x,additional_submitters[].molecule_type,,"[""additional_submitters"", ""[]"", ""molecule_type""]",,,Mitochondrion,
+additional_submitters_submitter,x,additional_submitters[].submitter,,"[""additional_submitters"", ""[]"", ""submitter""]",,,"Department Of Chemistry And Biochemistry, The University Of Oklahoma",
+annotation_info_name,x,annotation_info.name,,"[""annotation_info"", ""name""]",,,GCF_052040795.2-RS_2026_08,
+annotation_info_provider,x,annotation_info.provider,,"[""annotation_info"", ""provider""]",,,NCBI RefSeq,
+annotation_info_release_date,x,annotation_info.release_date,,"[""annotation_info"", ""release_date""]",,,2026-08-31,
+annotation_info_report_url,x,annotation_info.report_url,,"[""annotation_info"", ""report_url""]",,,https://www.ncbi.nlm.nih.gov/genome/annotation_euk/Danio_rerio/GCF_052040795.2-RS_2026_08.html,
+annotation_info_stats_gene_counts_protein_coding,o,annotation_info.stats.gene_counts.protein_coding,,"[""annotation_info"", ""stats"", ""gene_counts"", ""protein_coding""]",,,28509,
+annotation_info_stats_gene_counts_non_coding,o,annotation_info.stats.gene_counts.non_coding,,"[""annotation_info"", ""stats"", ""gene_counts"", ""non_coding""]",,,25636,
+annotation_info_stats_gene_counts_pseudogene,o,annotation_info.stats.gene_counts.pseudogene,,"[""annotation_info"", ""stats"", ""gene_counts"", ""pseudogene""]",,,710,
+annotation_info_stats_gene_counts_other,o,annotation_info.stats.gene_counts.other,,"[""annotation_info"", ""stats"", ""gene_counts"", ""other""]",,,45,
+annotation_info_busco_busco_lineage,o,annotation_info.busco.busco_lineage,,"[""annotation_info"", ""busco"", ""busco_lineage""]",,,actinopterygii_odb10,
+annotation_info_busco_busco_ver,o,annotation_info.busco.busco_ver,,"[""annotation_info"", ""busco"", ""busco_ver""]",,,5.7.1,
+annotation_info_busco_complete,o,annotation_info.busco.complete,,"[""annotation_info"", ""busco"", ""complete""]",,,0.99230766,
+annotation_info_busco_single_copy,o,annotation_info.busco.single_copy,,"[""annotation_info"", ""busco"", ""single_copy""]",,,0.9782967,
+annotation_info_busco_duplicated,o,annotation_info.busco.duplicated,,"[""annotation_info"", ""busco"", ""duplicated""]",,,0.014010989,
+annotation_info_busco_fragmented,o,annotation_info.busco.fragmented,,"[""annotation_info"", ""busco"", ""fragmented""]",,,0.0041208793,
+annotation_info_busco_missing,o,annotation_info.busco.missing,,"[""annotation_info"", ""busco"", ""missing""]",,,0.0035714286,
+annotation_info_busco_total_count,o,annotation_info.busco.total_count,,"[""annotation_info"", ""busco"", ""total_count""]",,,3640,
+annotation_info_method,o,annotation_info.method,,"[""annotation_info"", ""method""]",,,Best-placed RefSeq; Gnomon; cmsearch; tRNAscan-SE,
+annotation_info_pipeline,o,annotation_info.pipeline,,"[""annotation_info"", ""pipeline""]",,,NCBI Eukaryotic Genome Annotation Pipeline (EGAP),
+annotation_info_software_version,o,annotation_info.software_version,,"[""annotation_info"", ""software_version""]",,,10.6,
+annotation_info_status,o,annotation_info.status,,"[""annotation_info"", ""status""]",,,Full annotation,
+organism_infraspecific_names_isolate,x,organism.infraspecific_names.isolate,,"[""organism"", ""infraspecific_names"", ""isolate""]",,,MMU2019108-1,
+organism_infraspecific_names_sex,x,organism.infraspecific_names.sex,,"[""organism"", ""infraspecific_names"", ""sex""]",,,female,
+paired_assembly_only_genbank,x,assembly_info.paired_assembly.only_genbank,,"[""assembly_info"", ""paired_assembly"", ""only_genbank""]",,,chromosome MT,
+biosample_sample_ids_db,x,assembly_info.biosample.sample_ids[].db,,"[""assembly_info"", ""biosample"", ""sample_ids"", ""[]"", ""db""]",,,SRA,
+biosample_age,x,assembly_info.biosample.age,,"[""assembly_info"", ""biosample"", ""age""]",,,not applicable,
+biosample_isolate,x,assembly_info.biosample.isolate,,"[""assembly_info"", ""biosample"", ""isolate""]",,,MMU2019108-1,
+bioproject_lineage_bioprojects_parent_accessions,x,assembly_info.bioproject_lineage[].bioprojects[].parent_accessions[],,"[""assembly_info"", ""bioproject_lineage"", ""[]"", ""bioprojects"", ""[]"", ""parent_accessions"", ""[]""]",,,PRJNA489243,
+biosample_description_comment,x,assembly_info.biosample.description.comment,,"[""assembly_info"", ""biosample"", ""description"", ""comment""]",,,haploid cell line,
+organism_infraspecific_names_breed,x,organism.infraspecific_names.breed,,"[""organism"", ""infraspecific_names"", ""breed""]",,,Pekin duck,
+biosample_breed,x,assembly_info.biosample.breed,,"[""assembly_info"", ""biosample"", ""breed""]",,,Pekin duck,
+biosample_cultivar,x,assembly_info.biosample.cultivar,,"[""assembly_info"", ""biosample"", ""cultivar""]",,,not provided,
+biosample_collected_by,x,assembly_info.biosample.collected_by,,"[""assembly_info"", ""biosample"", ""collected_by""]",,,Kai Zhu,
+linked_assemblies_linked_assembly,x,assembly_info.linked_assemblies[].linked_assembly,,"[""assembly_info"", ""linked_assemblies"", ""[]"", ""linked_assembly""]",,,GCA_051020875.1,
+linked_assemblies_assembly_type,x,assembly_info.linked_assemblies[].assembly_type,,"[""assembly_info"", ""linked_assemblies"", ""[]"", ""assembly_type""]",,,haplotype_2,
+biosample_isolation_source,x,assembly_info.biosample.isolation_source,,"[""assembly_info"", ""biosample"", ""isolation_source""]",,,Aquarium,
+diploid_role,x,assembly_info.diploid_role,,"[""assembly_info"", ""diploid_role""]",,,haplotype_1,
+biosample_sample_name,x,assembly_info.biosample.sample_name,,"[""assembly_info"", ""biosample"", ""sample_name""]",,,SP_M,
+biosample_biomaterial_provider,x,assembly_info.biosample.biomaterial_provider,,"[""assembly_info"", ""biosample"", ""biomaterial_provider""]",,,"Eberly College of Science, Penn State University",
+paired_assembly_changed,x,assembly_info.paired_assembly.changed,,"[""assembly_info"", ""paired_assembly"", ""changed""]",,,chromosome MT,
+organism_infraspecific_names_cultivar,x,organism.infraspecific_names.cultivar,,"[""organism"", ""infraspecific_names"", ""cultivar""]",,,Pamir,
+biosample_lat_lon,x,assembly_info.biosample.lat_lon,,"[""assembly_info"", ""biosample"", ""lat_lon""]",,,41.7677 N 73.7508 W,
+additional_submitters_bioproject_accession,x,additional_submitters[].bioproject_accession,,"[""additional_submitters"", ""[]"", ""bioproject_accession""]",,,PRJNA30901,
+biosample_isolate_name_alias,x,assembly_info.biosample.isolate_name_alias,,"[""assembly_info"", ""biosample"", ""isolate_name_alias""]",,,west-pacific,
+biosample_identified_by,x,assembly_info.biosample.identified_by,,"[""assembly_info"", ""biosample"", ""identified_by""]",,,MARK PECK,
+biosample_project_name,x,assembly_info.biosample.project_name,,"[""assembly_info"", ""biosample"", ""project_name""]",,,DTOL,
+type_material_type_label,x,type_material.type_label,,"[""type_material"", ""type_label""]",,,TYPE_MATERIAL,
+type_material_type_display_text,x,type_material.type_display_text,,"[""type_material"", ""type_display_text""]",,,assembly from type material,
+paired_assembly_manual_diff,x,assembly_info.paired_assembly.manual_diff,,"[""assembly_info"", ""paired_assembly"", ""manual_diff""]",,,"RefSeq dropped two scaffolds that are predominantly rodent or bacterial in origin (KI270752.1/NT_187507.1 and KI270825.1/NT_187580.1), and dropped two unlocalized scaffolds that are now thought to be redundant with assembled chromosome sequence (KI270721.1/NT_187376.1 and KI270734.1/NT_187389.1)",
+gaps_between_scaffolds_count,o,assembly_stats.gaps_between_scaffolds_count,,"[""assembly_stats"", ""gaps_between_scaffolds_count""]",,,349,
+biosample_host,x,assembly_info.biosample.host,,"[""assembly_info"", ""biosample"", ""host""]",,,Sarcophilus harrisii,
+atypical_is_atypical,x,assembly_info.atypical.is_atypical,,"[""assembly_info"", ""atypical"", ""is_atypical""]",,,True,
+atypical_warnings,x,assembly_info.atypical.warnings[],,"[""assembly_info"", ""atypical"", ""warnings"", ""[]""]",,,contaminated,
+genome_notes,x,assembly_info.genome_notes[],,"[""assembly_info"", ""genome_notes"", ""[]""]",,,contaminated,
+biosample_host_disease,x,assembly_info.biosample.host_disease,,"[""assembly_info"", ""biosample"", ""host_disease""]",,,not applicable,
+biosample_sub_species,x,assembly_info.biosample.sub_species,,"[""assembly_info"", ""biosample"", ""sub_species""]",,,mix,
+biosample_ifsac_category,x,assembly_info.biosample.ifsac_category,,"[""assembly_info"", ""biosample"", ""ifsac_category""]",,,missing,
+suppression_reason,x,assembly_info.suppression_reason,,"[""assembly_info"", ""suppression_reason""]",,,This record was removed as a result of standard genome annotation processing. Please see www.ncbi.nlm.nih.gov/genome/annotation_euk/process/ for more information.,
+type,x,,type,,"[""type""]",,,ncbi_assembly
+url,x,,url,,"[""url""]",,,https://ngdc.cncb.ac.cn/gwh/ncbi_assembly/3040587/show
+dbId,x,,dbId,,"[""dbId""]",,,gwh
+species,x,,species[],,"[""species"", ""[]""]","broad group (e.g. 'Animals'), not a species name",,Animals
+lineage,x,,attrs.lineage,,"[""attrs"", ""lineage""]",,,cellular organisms Eukaryota Opisthokonta Metazoa Eumetazoa Bilateria Deuterostomia Chordata Craniata Vertebrata Gnathostomata Teleostomi Euteleostomi Sarcopterygii Dipnotetrapodomorpha Tetrapoda Amniota Mammalia Theria Eutheria Boreoeutheria Euarchontoglires Primates Haplorrhini Simiiformes Catarrhini Hominoidea Hominidae Homininae Homo
+gwh_accession,x,,attrs.accession,,"[""attrs"", ""accession""]",HTML link; same value as id,,<a href='https://ngdc.cncb.ac.cn/gwh/ncbi_assembly/3040587/show'>GCA_000001405.14</a>
+source,o,,attrs.source,,"[""attrs"", ""source""]",where GWH got the record; not NCBI source_database,,NCBI
+papers,x,,attrs.papers,,"[""attrs"", ""papers""]",,,-
+has_annotation,o,,attrs.has_annotation,,"[""attrs"", ""has_annotation""]",'Yes'/'No' string; NCBI equivalent would be presence of annotation_info,,Yes
+download,x,,attrs.download,,"[""attrs"", ""download""]",,,<a href='https://download.cncb.ac.cn/assembly/ncbi/Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14/GCA_000001405.14_GRCh37.p13_genomic.fna.gz'>DNA</a> | <a href='https://download.cncb.ac.cn/assembly/ncbi/Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14/GCA_000001405.14_GRCh37.p13_genomic.gff.gz'>GFF</a> | <a href='https://download.cncb.ac.cn/assembly/ncbi/Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14/GCA_000001405.14_GRCh37.p13_feature_table.txt.gz'>Feature</a> | <a href='https://download.cncb.ac.cn/assembly/ncbi/Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14/GCA_000001405.14_GRCh37.p13_rna_from_genomic.fna.gz'>RNA</a> | <a href='https://download.cncb.ac.cn/assembly/ncbi/Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14/GCA_000001405.14_GRCh37.p13_cds_from_genomic.fna.gz'>CDS</a> | <a href='https://download.cncb.ac.cn/assembly/ncbi/Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14/GCA_000001405.14_GRCh37.p13_protein.faa.gz'>Protein</a>
+view,x,,attrs.view,,"[""attrs"", ""view""]",,,-
+pubmed,x,,attrs.pubmed,,"[""attrs"", ""pubmed""]",,,-
+tax_lineage,x,,attrs.tax_lineage,,"[""attrs"", ""tax_lineage""]",,,131567 2759 33154 33208 6072 33213 33511 7711 89593 7742 7776 117570 117571 8287 1338369 32523 32524 40674 32525 9347 1437010 314146 9443 376913 314293 9526 314295 9604 207598 9605
+assembly_project_accession,x,,attrs.assembly_project_accession,,"[""attrs"", ""assembly_project_accession""]",,,GCA_000001405
+common_names,x,,attrs.common_names,,"[""attrs"", ""common_names""]",,,[]
+synonym_names,x,,attrs.synonym_names,,"[""attrs"", ""synonym_names""]",,,[]
+organism,x,,attrs.organism,,"[""attrs"", ""organism""]",HTML link around the species name,,<a href='https://ngdc.cncb.ac.cn/gwh/Genome/18/show'>Homo sapiens</a>
+has_reannotation,o,,attrs.has_reannotation,,"[""attrs"", ""has_reannotation""]",,,Yes
+ftp_directory,x,,attrs.ftp_directory,,"[""attrs"", ""ftp_directory""]",,,Animals/GCA/000/001/Homo_sapiens_human_GRCh37.p13_GCA_000001405.14
+gwh_release_date,x,,attrs.release_date,,"[""attrs"", ""release_date""]",probably GWH record date; not NCBI assembly release date,,2025-05-21
+jbrowse_data_available,x,,attrs.jbrowse_data_available,,"[""attrs"", ""jbrowse_data_available""]",,,-
+genome_representation,x,,attrs.genome_representation,,"[""attrs"", ""genome_representation""]",,,Full Genome
+doi,x,,attrs.doi,,"[""attrs"", ""doi""]",,,-
+reannotation_accession,x,,attrs.reannotation_accession,,"[""attrs"", ""reannotation_accession""]",,,-
+updatedAt,x,,updatedAt,,"[""updatedAt""]",,,2026-10-14T03:56:49.000Z
+basicInfo,x,,basicInfo,,"[""basicInfo""]",,,
