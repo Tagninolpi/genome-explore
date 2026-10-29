@@ -145,6 +145,6 @@ def fetch_and_fuse(taxon_id,fields_mapping):
     get_fused_stats(all_fused,len(NCBI),len(GWH))
     return all_fused
 
-all_res = fetch_and_fuse(7711,m.test1) # 9823 9606 #7711
+#all_res = fetch_and_fuse(7711,m.test1) # 9823 9606 #7711
 #print(all_res)
 #print(len(all_res))
